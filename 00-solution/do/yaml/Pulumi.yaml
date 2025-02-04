@@ -1,4 +1,4 @@
-name: 00-solution
+name: 00-solution-do-yaml
 description: A minimal DigitalOcean Pulumi YAML program
 runtime: yaml
 

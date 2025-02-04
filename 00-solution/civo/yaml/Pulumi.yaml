@@ -1,4 +1,4 @@
-name: civo-cluster
+name: 00-solution-civo-yaml
 runtime: yaml
 description: The Civo Cluster for the demo
 

@@ -10,7 +10,7 @@ resources:
   kubeconfig:
     type: pulumi:pulumi:StackReference
     properties:
-      name: dirien/00-solution/dev
+      name: dirien/00-solution-civo-csharp/dev
 
   do_k8s_provider:
     type: pulumi:providers:kubernetes
