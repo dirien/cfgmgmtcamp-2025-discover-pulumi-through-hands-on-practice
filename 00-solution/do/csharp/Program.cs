@@ -5,19 +5,13 @@ using DigitalOcean = Pulumi.DigitalOcean;
 
 return await Deployment.RunAsync(() => 
 {
-    var clusterName = "do-cluster";
-
     var clusterRegion = "fra1";
-
     var nodePoolName = "default";
-
     var nodeCount = 1;
-
     var version = "1.31.1-do.5";
 
-    var doCluster = new DigitalOcean.KubernetesCluster("doCluster", new()
+    var doCluster = new DigitalOcean.KubernetesCluster("do-cluster", new()
     {
-        Name = clusterName,
         Region = clusterRegion,
         Version = version,
         DestroyAllAssociatedResources = true,
