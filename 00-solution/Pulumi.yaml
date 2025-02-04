@@ -3,17 +3,15 @@ description: A minimal DigitalOcean Pulumi YAML program
 runtime: yaml
 
 variables:
-  clusterName: "do-cluster"
   clusterRegion: "fra1"
   nodePoolName: "default"
   nodeCount: 1
   version: 1.31.1-do.5
 
 resources:
-  doCluster:
+  do-cluster:
     type: digitalocean:KubernetesCluster
     properties:
-      name: "${clusterName}"
       region: "${clusterRegion}"
       version: "${version}"
       destroyAllAssociatedResources: true
@@ -23,5 +21,5 @@ resources:
         nodeCount: "${nodeCount}"
 
 outputs:
-  name: "${doCluster.name}"
-  kubeconfig: "${doCluster.kubeConfigs[0].rawConfig}"
+  name: "${do-cluster.name}"
+  kubeconfig: "${do-cluster.kubeConfigs[0].rawConfig}"
