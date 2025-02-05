@@ -7,13 +7,11 @@ import (
 
 func main() {
 	pulumi.Run(func(ctx *pulumi.Context) error {
-		clusterName := "do-cluster"
 		clusterRegion := "fra1"
 		nodePoolName := "default"
 		nodeCount := 1
 		version := "1.31.1-do.5"
-		doCluster, err := digitalocean.NewKubernetesCluster(ctx, "doCluster", &digitalocean.KubernetesClusterArgs{
-			Name:                          pulumi.String(clusterName),
+		doCluster, err := digitalocean.NewKubernetesCluster(ctx, "do-cluster", &digitalocean.KubernetesClusterArgs{
 			Region:                        pulumi.String(clusterRegion),
 			Version:                       pulumi.String(version),
 			DestroyAllAssociatedResources: pulumi.Bool(true),

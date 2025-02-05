@@ -1,13 +1,11 @@
 import pulumi
 import pulumi_digitalocean as digitalocean
 
-cluster_name = "do-cluster"
 cluster_region = "fra1"
 node_pool_name = "default"
 node_count = 1
 version = "1.31.1-do.5"
-do_cluster = digitalocean.KubernetesCluster("doCluster",
-    name=cluster_name,
+do_cluster = digitalocean.KubernetesCluster("do-cluster",
     region=cluster_region,
     version=version,
     destroy_all_associated_resources=True,
