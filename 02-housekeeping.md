@@ -1,4 +1,4 @@
-# Chapter 5: Housekeeping!
+# Chapter 2: Housekeeping!
 
 In this chapter, we'll undertake some cleanup. We will delete all resources we set up during the workshop.
 

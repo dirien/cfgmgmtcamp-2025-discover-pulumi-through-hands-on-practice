@@ -26,7 +26,7 @@ free to look for the examples in the different chapters if you get stuck.
 
 - [Chapter 0 - Hello, DigitalOcean World!](./00-create-kubernetes-cluster.md)
 - [Chapter 1 - Deploy the Application to Kubernetes](./01-create-nginx-deployment.md)
-- [Chapter 5 - Housekeeping!](./02-housekeeping.md)
+- [Chapter 2 - Housekeeping!](./02-housekeeping.md)
 
 ### Prerequisites
 
