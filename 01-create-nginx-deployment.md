@@ -77,13 +77,10 @@ resources:
     using System.Collections.Generic;
     using Pulumi;
     
-    return new Dictionary<string, object?>
+    var kubeconfig = new StackReference("kubeconfig", new StackReferenceArgs
     {
-        { "kubeconfig", new StackReference("kubeconfig", new StackReferenceArgs
-        {
-            Name = "dirien/00-solution-civo-csharp/dev",
-        }) },
-    };
+        Name = "dirien/00-solution-civo-csharp/dev",
+    });
     {% endhighlight %}
 </details>
 <details>
@@ -111,24 +108,15 @@ resources:
 <details>
   <summary>Java</summary>
     {% highlight java %}
-    package generated_program;
-    
     import com.pulumi.Context;
     import com.pulumi.Pulumi;
     import com.pulumi.StackReference;
     import com.pulumi.StackReferenceArgs;
     
-    public class App {
-        public static void main(String[] args) {
-            Pulumi.run(App::stack);
-        }
+    var kubeconfig = new StackReference("kubeconfig", StackReferenceArgs.builder()
+      .name("dirien/00-solution/dev")
+      .build());
     
-        public static void stack(Context ctx) {
-            var kubeconfig = new StackReference("kubeconfig", StackReferenceArgs.builder()
-                .name("dirien/00-solution/dev")
-                .build());
-        }
-    }
     {% endhighlight %}
 </details>
 <details>
