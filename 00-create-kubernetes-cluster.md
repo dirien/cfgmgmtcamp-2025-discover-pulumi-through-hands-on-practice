@@ -56,7 +56,7 @@ but in this workshop we will be using Pulumi Cloud.
 
 Start by running `pulumi login` and follow the instructions to connect the CLI with your Pulumi Cloud account after you've created it.
 
-> [!IMPORTANT]
+> **Important:**
 > If you run Pulumi for the first time, you will be asked to log in. Follow the instructions on the screen to
 > login. You may need to create an account first, don't worry it is free.
 
@@ -286,7 +286,7 @@ pulumi preview
 pulumi up
 ```
 
-> [!IMPORTANT]
+> **Important:**
 > You need to set your DigitalOcean API token as an environment variable `DIGITALOCEAN_TOKEN` before running the `pulumi up` command.
 > The token will be provided to you in the workshop.
 
