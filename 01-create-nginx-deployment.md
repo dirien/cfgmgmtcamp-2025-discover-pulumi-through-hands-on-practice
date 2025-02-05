@@ -95,7 +95,7 @@ resources:
     func main() {
         pulumi.Run(func(ctx *pulumi.Context) error {
             kubeconfig, err := pulumi.NewStackReference(ctx, "kubeconfig", &pulumi.StackReferenceArgs{
-                Name: pulumi.String("dirien/00-solution/dev"),
+                Name: pulumi.String("<organization>/<project>/<stack>"),
             })
             if err != nil {
                 return err
@@ -124,7 +124,7 @@ resources:
     {% highlight python %}
     import pulumi
     
-    kubeconfig = pulumi.StackReference("kubeconfig", stack_name="dirien/00-solution/dev")
+    kubeconfig = pulumi.StackReference("kubeconfig", stack_name="<organization>/<project>/<stack>")
     {% endhighlight %}
 </details>
 <details>
@@ -133,7 +133,7 @@ resources:
     const pulumi = require("@pulumi/pulumi");
     
     const kubeconfig = new pulumi.StackReference("kubeconfig", {
-        name: "dirien/00-solution/dev",
+        name: "<organization>/<project>/<stack>",
     });
     {% endhighlight %}
 </details>
@@ -155,7 +155,7 @@ Head to Pulumi Cloud Console and create a new Pulumi ESC project with the name `
 
 And the environment `dev`:
 
-![img_1.png](docs/static/media/img_1.png)![Pulumi ESC Environment](env2.png)
+![img_1.png](docs/static/media/img_1.png)
 
 In the editor add the following yaml into the `Environment definition`:
 
@@ -181,7 +181,7 @@ And set the configuration by running the `env edit` command and copy the above Y
 pulumi env edit <your-org>/cfgmgmtcamp/dev
 ```
 
-Now, we need to link the Pulumi ESC project to the Pulumi IaC project. To do this, we need to add the following to your `Pulumi.<stagename>.yaml`:
+Now, we need to link the Pulumi ESC project to the Pulumi IaC project. To do this, we need to add the following to your `Pulumi.<stackname>.yaml`:
 
 ```yaml
 environment:
@@ -310,7 +310,7 @@ outputs:
     
         var kubeconfig = new StackReference("kubeconfig", new()
         {
-            Name = "dirien/00-solution/dev",
+            Name = "<organization>/<project>/<stack>",
         });
     
         var doK8SProvider = new Kubernetes.Provider("do_k8s_provider", new()
@@ -485,7 +485,7 @@ outputs:
       title := config.Get("nginxTitle")
       body := config.Get("nginxBody")
       kubeconfig, err := pulumi.NewStackReference(ctx, "kubeconfig", &pulumi.StackReferenceArgs{
-        Name: pulumi.String("dirien/00-solution/dev"),
+        Name: pulumi.String("<organization>/<project>/<stack>"),
       })
       if err != nil {
         return err
@@ -651,7 +651,7 @@ outputs:
             var body = config.require("nginxBody");
     
             var kubeconfig = new StackReference("kubeconfig", StackReferenceArgs.builder()
-                .name("dirien/00-solution/dev")
+                .name("<organization>/<project>/<stack>")
                 .build());
     
             var doK8SProvider = new Provider("doK8SProvider", ProviderArgs.builder()
@@ -768,7 +768,7 @@ outputs:
     config = pulumi.Config()
     title = config.get("nginxTitle")
     body = config.get("nginxBody")
-    kubeconfig = pulumi.StackReference("kubeconfig", stack_name="dirien/00-solution/dev")
+    kubeconfig = pulumi.StackReference("kubeconfig", stack_name="<organization>/<project>/<stack>")
     do_k8_s_provider = kubernetes.Provider("do_k8s_provider",
     enable_server_side_apply=True,
     kubeconfig=kubeconfig.outputs["kubeconfig"])
@@ -865,7 +865,7 @@ outputs:
     const title = config.require("nginxTitle")
     const body = config.require("nginxBody")
     
-    const kubeconfig = new pulumi.StackReference("kubeconfig", {name: "dirien/00-solution/dev"});
+    const kubeconfig = new pulumi.StackReference("kubeconfig", {name: "<organization>/<project>/<stack>"});
     const doK8SProvider = new kubernetes.Provider("do_k8s_provider", {
     enableServerSideApply: true,
     kubeconfig: kubeconfig.outputs.kubeconfig,
@@ -956,7 +956,7 @@ outputs:
     
     {% endhighlight %}
 </details>
-
+<br/>
 And bonus points if you can output the loadbalancer IP address from the `Service` resource in the following format:
 
 ```bash
