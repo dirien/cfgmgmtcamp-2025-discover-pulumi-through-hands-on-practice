@@ -114,7 +114,7 @@ resources:
     import com.pulumi.StackReferenceArgs;
     
     var kubeconfig = new StackReference("kubeconfig", StackReferenceArgs.builder()
-      .name("dirien/00-solution/dev")
+      .name("<organization>/<project>/<stack>")
       .build());
     
     {% endhighlight %}
