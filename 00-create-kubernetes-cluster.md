@@ -186,61 +186,65 @@ outputs:
 <details>
   <summary>Java</summary>
     {% highlight java %}
-    package application;
-    
-    import com.pulumi.Context;
-    import com.pulumi.Pulumi;
-    import com.pulumi.digitalocean.KubernetesCluster;
-    import com.pulumi.digitalocean.KubernetesClusterArgs;
-    import com.pulumi.digitalocean.inputs.KubernetesClusterNodePoolArgs;
-    
-    public class App {
-        public static void main(String[] args) {
-            Pulumi.run(App::stack);
+        package application;
+        
+        import com.pulumi.Context;
+        import com.pulumi.Pulumi;
+        import com.pulumi.digitalocean.KubernetesCluster;
+        import com.pulumi.digitalocean.KubernetesClusterArgs;
+        import com.pulumi.digitalocean.inputs.KubernetesClusterNodePoolArgs;
+        
+        public class App {
+            public static void main(String[] args) {
+                Pulumi.run(App::stack);
+            }
+        
+            public static void stack(Context ctx) {
+                final var clusterRegion = "fra1";
+                final var nodePoolName = "default";
+                final var nodeCount = 1;
+                final var version = "1.31.1-do.5";
+        
+                var doCluster = new KubernetesCluster("do-cluster", KubernetesClusterArgs.builder()
+                    .region(clusterRegion)
+                    .version(version)
+                    .destroyAllAssociatedResources(true)
+                    .nodePool(KubernetesClusterNodePoolArgs.builder()
+                        .name(nodePoolName)
+                        .size("s-2vcpu-2gb")
+                        .nodeCount(nodeCount)
+                        .build())
+                    .build());
+        
+                ctx.export("name", doCluster.name());
+                ctx.export("kubeconfig", doCluster.kubeConfigs().applyValue(kubeConfigs -> kubeConfigs.get(0).rawConfig()));
+            }
         }
-    
-        public static void stack(Context ctx) {
-            final var clusterRegion = "fra1";
-            final var nodePoolName = "default";
-            final var nodeCount = 1;
-            final var version = "1.31.1-do.5";
-    
-            var doCluster = new KubernetesCluster("do-cluster", KubernetesClusterArgs.builder()
-                .region(clusterRegion)
-                .version(version)
-                .destroyAllAssociatedResources(true)
-                .nodePool(KubernetesClusterNodePoolArgs.builder()
-                    .name(nodePoolName)
-                    .size("s-2vcpu-2gb")
-                    .nodeCount(nodeCount)
-                    .build())
-                .build());
-    
-            ctx.export("name", doCluster.name());
-            ctx.export("kubeconfig", doCluster.kubeConfigs().applyValue(kubeConfigs -> kubeConfigs.get(0).rawConfig()));
-        }
-    }
-    ```
-    
-    ```python
-    import pulumi
-    import pulumi_digitalocean as digitalocean
-    
-    cluster_region = "fra1"
-    node_pool_name = "default"
-    node_count = 1
-    version = "1.31.1-do.5"
-    do_cluster = digitalocean.KubernetesCluster("do-cluster",
-        region=cluster_region,
-        version=version,
-        destroy_all_associated_resources=True,
-        node_pool={
-            "name": node_pool_name,
-            "size": "s-2vcpu-2gb",
-            "node_count": node_count,
-        })
-    pulumi.export("name", do_cluster.name)
-    pulumi.export("kubeconfig", do_cluster.kube_configs[0].raw_config)
+    {% endhighlight %}
+</details>
+
+
+<details>
+  <summary>Python</summary>
+    {% highlight python %}
+        import pulumi
+        import pulumi_digitalocean as digitalocean
+        
+        cluster_region = "fra1"
+        node_pool_name = "default"
+        node_count = 1
+        version = "1.31.1-do.5"
+        do_cluster = digitalocean.KubernetesCluster("do-cluster",
+            region=cluster_region,
+            version=version,
+            destroy_all_associated_resources=True,
+            node_pool={
+                "name": node_pool_name,
+                "size": "s-2vcpu-2gb",
+                "node_count": node_count,
+            })
+        pulumi.export("name", do_cluster.name)
+        pulumi.export("kubeconfig", do_cluster.kube_configs[0].raw_config)
     {% endhighlight %}
 </details>
 
@@ -301,6 +305,11 @@ kubectl get nodes
 ```
 
 You should see the nodes in the cluster.
+
+## Stretch Goal
+
+- Create a new stack with a different region and node count. Use the `pulumi stack` command to create a new stack and
+  deploy it with the new values.
 
 ## Learn more
 
