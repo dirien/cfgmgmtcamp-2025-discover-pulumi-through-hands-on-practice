@@ -42,7 +42,7 @@ and follow the instructions that apply to your machine.
 Once you have installed the CLI, verify that it works via the following command:
 ```shell
 > pulumi version
-v3.147.0
+v3.147.0 # or similar
 ```
 You are now ready to create your first Pulumi application. 
 
@@ -59,6 +59,14 @@ Start by running `pulumi login` and follow the instructions to connect the CLI w
 > **Important:**
 > If you run Pulumi for the first time, you will be asked to log in. Follow the instructions on the screen to
 > login. You may need to create an account first, don't worry it is free.
+
+### Have a look at the Pulumi Cloud Console
+
+After you have logged in, you can have a look at the Pulumi Cloud Console at https://app.pulumi.com/ to see your projects and stacks.
+
+Go click around and see what you can find. You will see the projects you create in this workshop here.
+
+Also, there is the tab item `Environmet` tab, which we will use later in the workshop to create different Pulumi ESC environments.
 
 ## Creating A New Project
 
